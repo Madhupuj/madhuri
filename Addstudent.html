@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+    <style>
+        /* ... Previous CSS styles ... */
+
+        .content form {
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .content form label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .content form input[type="text"],
+        .content form input[type="email"],
+        .content form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- ... Login Form ... -->
+</div>
+
+<div class="sidebar">
+    <a href="#">Home</a>
+    <a href="#">Login</a>
+    <a href="#">Register</a>
+    <a href="#">All Students</a>
+    <a href="#">Edit Students</a>
+</div>
+
+<div class="content">
+    <form id="registrationForm">
+        <h2>Add Students</h2>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <!-- Add more fields as needed -->
+
+        <p class="error" id="registration-error"></p>
+
+        <button type="button" onclick="validateRegistration()">Register</button>
+    </form>
+</div>
+
+<script>
+    function validateRegistration() {
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        var registrationError = document.getElementById('registration-error');
+
+        if (name === "" || email === "" || username === "" || password === "") {
+            registrationError.textContent = "All fields are required.";
+        } else {
+            // Perform additional validation or send the data to the server for registration
+            // For simplicity, we'll just display a success message here
+            registrationError.textContent = "Registration successful!";
+        }
+    }
+</script>
+
+</body>
+</html>

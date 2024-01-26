@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Students</title>
+    <link rel="stylesheet" href="Edit.css">
+    
+</head>
+<body>
+    <section>
+    <div class="sidebar">
+        <a href="index.html">Home</a>
+        <a href="Login.html">Login</a>
+        <a href="register.html">Register</a>
+        <a href="ShowAll.html">All Students</a>
+        <a href="EditStudents.html">Edit Students</a>
+    </div>  
+
+    <div class="container">
+        
+        <form id="editForm">
+            <h2>Edit Student Details</h2>
+            <label for="editName">Name:</label>
+            <input type="text" id="editName" name="editName" required>
+
+            <label for="editEmail">Email:</label>
+            <input type="email" id="editEmail" name="editEmail" required>
+
+            
+
+            <button type="button" onclick="saveChanges()">Save Changes</button>
+        </form>
+    </div>
+</section>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var studentIndex = getParameterByName('index');
+            var students = JSON.parse(localStorage.getItem('students')) || [];
+
+            if (studentIndex !== null && studentIndex < students.length) {
+                var student = students[studentIndex];
+                document.getElementById('editName').value = student.name;
+                document.getElementById('editEmail').value = student.email;
+                
+            } else {
+                
+            }
+        });
+
+        function saveChanges() {
+            var studentIndex = getParameterByName('index');
+            var students = JSON.parse(localStorage.getItem('students')) || [];
+
+            if (studentIndex !== null && studentIndex < students.length) {
+                
+                students[studentIndex].name = document.getElementById('editName').value;
+                students[studentIndex].email = document.getElementById('editEmail').value;
+               
+                
+                localStorage.setItem('students', JSON.stringify(students));
+
+                window.location.href = 'ShowAll.html';
+            } else {
+                
+            }
+        }
+
+        function getParameterByName(name) {
+            var url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+    </script>
+</body>
+</html>

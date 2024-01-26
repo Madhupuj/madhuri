@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShowAll Students</title>
+    <link rel="stylesheet" href="ShowAll.css">
+</head>
+<body>
+    <section>
+    <div class="sidebar">
+        <a href="index.html">Home</a>
+        <a href="Login.html">Login</a>
+        <a href="register.html">Register</a>
+        <a href="ShowAll.html">All Students</a>
+        <a href="Edit.html">Edit Students</a>
+    </div>  
+    
+
+<div class="container">
+    <h2>All Students</h2>
+    <div id="studentList"></div>
+</div>
+</body>
+</section>
+<script>
+   
+    document.addEventListener("DOMContentLoaded", function () {
+        var studentListContainer = document.getElementById('studentList');
+        var students = JSON.parse(localStorage.getItem('students')) || [];
+
+        if (students.length === 0) {
+            studentListContainer.innerHTML = "<p>No students registered yet.</p>";
+        } else {
+            var listHTML = "<ul>";
+            students.forEach(function (student) {
+                listHTML += "<li>Name: " + student.name + ", Email: " + student.email + "</li>";
+               
+            });
+            listHTML += "</ul>";
+            studentListContainer.innerHTML = listHTML;
+        }
+    });
+</script>
+
+</body>
+</html>
